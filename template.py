@@ -2,17 +2,17 @@
 # Copyright (c) 2021 MobileCoin Inc.
 # Copyright (c) 2021 The Forest Team
 import logging
-from forest.core import Bot, Message, Response, run_bot
+from forest.core import QuestionBot, Message, Response, run_bot
 from aiohttp import web
 
 
-class TemplateBot(Bot):
-    async def do_template(self, _: Message) -> str:
+class TemplateBot(QuestionBot):
+    async def do_template(self, message: Message) -> str:
         """
         A template you can fill in to make your own bot. Anything after do_ is a / command.
         Return value is used to send a message to the user.
         """
-        return "template."
+        return "template"
 
     async def do_echo(self, message: Message) -> str:
         """
@@ -20,13 +20,20 @@ class TemplateBot(Bot):
         """
         return message.text
 
+    async def do_ask_color(self, message: Message) -> str:
+        "Asks for your favorite color"
+        answer = await self.ask_freeform_question(
+            "+13478157801", "What's your favorite color?"
+        )
+        return f"That's funny, my favorite color is {answer}, too!"
+
     async def start_process(self) -> None:
         logging.info("my startup code goes here")
         await super().start_process()
 
     async def handle_message(self, message: Message) -> Response:
         logging.info("my custom handling logic goes here")
-        return await super().handle_message()
+        return await super().handle_message(message)
 
 
 async def my_webhook_handler(request: web.Request) -> web.Response:
