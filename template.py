@@ -23,7 +23,7 @@ class TemplateBot(QuestionBot):
     async def do_ask_color(self, message: Message) -> str:
         "Asks for your favorite color"
         answer = await self.ask_freeform_question(
-            "+13478157801", "What's your favorite color?"
+            message.source, "What's your favorite color?"
         )
         return f"That's funny, my favorite color is {answer}, too!"
 

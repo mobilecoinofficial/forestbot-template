@@ -164,7 +164,7 @@ ulid2 = "*"
 type = "git"
 url = "https://github.com/mobilecoinofficial/forest"
 reference = "main"
-resolved_reference = "b6d3b494b0fcad790935ee7f6a3505056f8d1d30"
+resolved_reference = "f3d947a5c2494b10083b7fbd1a4402af53dd4d0a"
 
 [[package]]
 name = "frozenlist"
