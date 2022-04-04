@@ -1,3 +1,5 @@
+# basic setup
+
 1. get a database, register a number and upload it
 2. git commit
 3. add your code to template.py and rename it
@@ -6,10 +8,7 @@
 5. create a fly app and replace/edit fly.toml
 
 
----
-
-
-getting a database:
+# getting a database
 
 if you `fly launch`, fly will prompt you to create a PostgreSQL database. if you do, you'll get a password. the fly app should "just work", but you need to connect to it locally to upload a datastore.
 
@@ -35,9 +34,7 @@ flyctl proxy 5432:15432 -a <fly app name for db> &
 DATABASE_URL=postgres://postgres:<password>@localhost:15432 poetry run python -m forest.datastore upload --path . "testbot9000"
 ```
 
----
-
-setting up payments
+# setting up payments
 
 1. clone https://github.com/mobilecoinofficial/full-service-cert-pinning and run ./create_app.sh
 2. append the contents of `<full service app name>.client_secrets` to `dev_secrets` and run `cat dev_secrets | fly secrets import`
