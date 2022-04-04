@@ -2,7 +2,7 @@
 # Copyright (c) 2021 MobileCoin Inc.
 # Copyright (c) 2021 The Forest Team
 import logging
-from forest.core import QuestionBot, Message, Response, run_bot
+from forest.core import QuestionBot, Message, Response, app, run_bot
 from aiohttp import web
 
 
@@ -44,5 +44,7 @@ async def my_webhook_handler(request: web.Request) -> web.Response:
     await bot.admin(f"webhook got hit. data: {data}")
 
 
+app.add_routes([web.post("/webhook", my_webhook_handler)])
+
 if __name__ == "__main__":
-    run_bot(TemplateBot)
+    run_bot(TemplateBot, app)
