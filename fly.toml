@@ -12,6 +12,9 @@ SIGNAL="signal-cli"
 DOWNLOAD=1
 AUTOSAVE=1
 
+[deploy]
+  strategy = "immediate"
+
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
