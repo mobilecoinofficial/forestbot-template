@@ -7,7 +7,7 @@ WORKDIR /app
 RUN pip install poetry
 RUN python3.9 -m venv /app/venv 
 COPY ./pyproject.toml ./poetry.lock /app/
-RUN VIRTUAL_ENV=/app/venv poetry install 
+RUN VIRTUAL_ENV=/app/venv poetry install --no-dev
 
 FROM ubuntu:hirsute
 WORKDIR /app
