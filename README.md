@@ -34,3 +34,16 @@ poetry install
 flyctl proxy 5432:15432 -a <fly app name for db> &
 DATABASE_URL=postgres://postgres:<password>@localhost:15432 poetry run python -m forest.datastore upload --path . "testbot9000"
 ```
+
+---
+
+setting up payments
+
+1. clone https://github.com/mobilecoinofficial/full-service-cert-pinning and run ./create_app.sh
+2. append the contents of `<full service app name>.client_secrets` to `dev_secrets` and run `cat dev_secrets | fly secrets import`
+3. add `FULL_SERVICE_URL=https://<full service app name>.fly.dev/wallet` to fly.toml under [env]
+4. message your bot `fsr create_account name mybot` (make sure you've set ADMIN=<your number> in secrets for this to work)
+5. message your bot `eval return mc_util.b58_wrapper_to_b64_public_address(await self.mobster.get_my_address())` to get an address 
+6. message your bot `set_profile MyBot McMyBotFace <address from the last message>` (you can also attach a picture for the profile picture)
+7. test sending a payment
+
